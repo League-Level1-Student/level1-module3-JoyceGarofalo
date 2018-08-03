@@ -33,6 +33,9 @@ public class SimonSays extends KeyAdapter {
 		// 2. Add the four images that match keyboard keys like this: 
 		//images.put(new Integer(KeyEvent.VK_UP), "up.jpg");
 		images.put(new Integer(KeyEvent.VK_UP), "up.jpg");
+		images.put(new Integer(KeyEvent.VK_DOWN), "down.jpg");
+		images.put(new Integer(KeyEvent.VK_LEFT), "left.jpg");
+		images.put(new Integer(KeyEvent.VK_RIGHT), "right.jpg");
 		// 3. Use a JOptionPane to tell the user the rules: "Press the matching key when
 		// 'Simon says' otherwise press a different key"
 		JOptionPane.showMessageDialog(null, "Press the matching key when 'Simon says' otherwise press a different key");
@@ -42,30 +45,38 @@ public class SimonSays extends KeyAdapter {
 
 	public void keyPressed(KeyEvent e) {
 		// 15. Make a points variable to track the score.
-
+		int points = 0;
 		// 16. If the keyCode matches the imageIndex and "Simon says"
-		
+		if(imageIndex == e.getKeyCode() && simonSays == true) {
+			points += 1;
+		}
 			// 17. Increase the value of score
 		
 			// 18. Use the speak method to tell the user they were correct
-		
+		speak("correct");
 		// 19. If the keyCode doesn't match the imageIndex and "Simon didn't say..."
-		
+		if(imageIndex != e.getKeyCode() && simonSays == false) {
+			points += 1;
+		}
 			// 20.  Increase the value of score
-		
+		speak("correct");
 			// 21. Use the speak method to tell the user they were correct
 		
 		// 22. Increment tries by 1
-		
+		tries += 1;
 		// 25. If tries is greater than 9 (or however many you want)...
-		
+		if(tries >= 9) {
+			System.out.println(points);
+			System.exit(0);
+		}
 			// 26. Tell the user their score
 		
 			// 27. Exit the program
-
+		
 		// 23. Dispose of the frame
-
+		frame.dispose();
 		// 24. Call the showImage method to show a new image
+		showImage();
 	}
 
 	private void showImage() {
