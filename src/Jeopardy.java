@@ -63,13 +63,19 @@ public class Jeopardy implements ActionListener {
 		
 		// 9. Use the secondButton variable to hold a button using the createButton
 		// method
-		secondButton = createButton("300");
+		secondButton = createButton("400");
 		// 10. Add the secondButton to the quizPanel
 		quizPanel.add(secondButton);
 		// 11. Add action listeners to the buttons (2 lines of code)
 		firstButton.addActionListener(this);
 		secondButton.addActionListener(this);
 		// 12. Fill in the actionPerformed() method below
+		thirdButton = createButton("600");
+		quizPanel.add(thirdButton);
+		fourthButton = createButton("800");
+		quizPanel.add(fourthButton);
+		thirdButton.addActionListener(this);
+		fourthButton.addActionListener(this);
 		
 
 		frame.pack();
@@ -79,7 +85,7 @@ public class Jeopardy implements ActionListener {
 				Toolkit.getDefaultToolkit().getScreenSize().width);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	//dothisnextclass;
+	
 	/*
 	 * 13. Use the method provided to play the Jeopardy theme music
 	 * 
@@ -108,7 +114,7 @@ public class Jeopardy implements ActionListener {
 		JButton buttonPressed = (JButton) arg0.getSource();
 		// If the buttonPressed was the firstButton
 		if(buttonPressed == firstButton) {
-			askQuestion("What is the world's biggest island?", "Greenland", 200);
+			askQuestion("What is the capital city of Spain?", "Madrid", 200);
 		}
 		// Call the askQuestion() method
 
@@ -117,10 +123,15 @@ public class Jeopardy implements ActionListener {
 
 		// Or if the buttonPressed was the secondButton
 		if(buttonPressed == secondButton) {
-			askQuestion("Which English town was a forerunner of the Parks Movement and the first city in Europe to have a street tram system?", "Birkenhead", 300);
+			askQuestion("What is the world's biggest island?", "Greenland", 400);
 		}
 		// Call the askQuestion() method with a harder question
-
+		if(buttonPressed == thirdButton) {
+			askQuestion("Which English town was a forerunner of the Parks Movement and the first city in Europe to have a street tram system?", "Birkenhead", 600);
+		}
+		if(buttonPressed == fourthButton) {
+			askQuestion("What is the diameter of the Earth?", "8000", 800);
+		}
 		// Clear the button text (set the button text to nothing)
 		buttonPressed.setText("");
 	}
@@ -130,7 +141,7 @@ public class Jeopardy implements ActionListener {
 		// Use a pop up to ask the user the question
 		String answer = JOptionPane.showInputDialog(question);
 		// If the answer is correct
-		if(answer == correctAnswer) {
+		if(answer.equals(correctAnswer)) {
 			score += prizeMoney;
 			updateScore();
 			JOptionPane.showMessageDialog(null, "Correct");
