@@ -22,10 +22,17 @@ public class Gridworld {
 		Location ll = new Location(4,1);
 		world.add(l, flower);
 		world.add(ll, flower);
-		for (int i = 0; i < 50; i++) {
-			for (int j = 0; j < 50; j++) {
+		for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
 				Location n = new Location(i, j);
-				world.add(n, flower);
+				Flower flo = new Flower();
+				if(i%2==0) {
+					flo.setColor(Color.red);
+				}
+				else {
+					flo.setColor(Color.WHITE);
+				}
+				world.add(n, flo);
 			}
 		}
 		
